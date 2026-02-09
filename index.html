@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SH PAY - خدمات الدفع الرقمي</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- إضافة خط Tajawal من Google Fonts للمظهر الاحترافي -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- الهيدر -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="logo.png" alt="SH PAY Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#how-it-works">كيف نعمل؟</a></li>
+                    <li><a href="#policy">السياسة</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- قسم الترحيب -->
+    <section id="home" class="hero">
+        <h1>مرحباً بكم في SH PAY</h1>
+        <p>بوابتك السهلة للاشتراكات الرقمية بأفضل الأسعار</p>
+    </section>
+
+    <!-- قسم العروض -->
+    <section class="offers container">
+        <h2 class="section-title">العروض المتاحة</h2>
+        <div class="offers-grid">
+            <!-- ChatGPT -->
+            <div class="offer-card">
+                <img src="ChatGPT.jpg" alt="ChatGPT">
+                <div class="offer-info">
+                    <h3>ChatGPT</h3>
+                    <p>منصة ذكاء اصطناعي تساعدك على المحادثة، توليد النصوص، وإتمام المهام اليومية بسهولة</p>
+                    <span class="badge">عرض لفترة محدودة</span>
+                    <p class="price">25 دينار / شهرياً</p>
+                    <button class="btn-subscribe" onclick="openPaymentPanel('ChatGPT', '25 دينار')">اشترك الآن</button>
+                </div>
+            </div>
+
+            <!-- CapCut -->
+            <div class="offer-card">
+                <img src="CapCut.jpg" alt="CapCut">
+                <div class="offer-info">
+                    <h3>CapCut</h3>
+                    <p>برنامج تحرير الفيديوهات سهل وسريع لإنشاء محتوى جذاب ومشاركته على وسائل التواصل</p>
+                    <span class="badge">عرض لفترة محدودة</span>
+                    <p class="price">30 دينار / شهرياً</p>
+                    <button class="btn-subscribe" onclick="openPaymentPanel('CapCut', '30 دينار')">اشترك الآن</button>
+                </div>
+            </div>
+
+            <!-- Canva -->
+            <div class="offer-card">
+                <img src="Canva.jpg" alt="Canva">
+                <div class="offer-info">
+                    <h3>Canva</h3>
+                    <p>أداة تصميم احترافية لإنشاء تصاميم بصور ونصوص رائعة بسهولة</p>
+                    <span class="badge">عرض لفترة محدودة</span>
+                    <p class="price">25 دينار / شهرياً</p>
+                    <button class="btn-subscribe" onclick="openPaymentPanel('Canva', '25 دينار')">اشترك الآن</button>
+                </div>
+            </div>
+
+            <!-- Snapchat -->
+            <div class="offer-card">
+                <img src="Snapchat.jpg" alt="Snapchat">
+                <div class="offer-info">
+                    <h3>Snapchat</h3>
+                    <p>تطبيق مشاركة الصور والفيديوهات مع الأصدقاء بطريقة ممتعة وسريعة</p>
+                    <p class="price">55 دينار / 3 أشهر</p>
+                    <button class="btn-subscribe" onclick="openPaymentPanel('Snapchat', '55 دينار')">اشترك الآن</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="fb-link">
+            <a href="https://www.facebook.com/profile.php?id=61581818220449" target="_blank" class="btn-fb">صفحتنا على فيسبوك</a>
+        </div>
+    </section>
+
+    <!-- لوحة الدفع (Modal) -->
+    <div id="payment-panel" class="modal">
+        <div class="modal-content sky-blue-bg">
+            <span class="close" onclick="closeModal('payment-panel')">&times;</span>
+            <h2 id="modal-offer-name">اسم العرض</h2>
+            <p>السعر: <strong id="modal-price"></strong></p>
+            <p>يرجى تحويل المبلغ إلى أحد الأرقام التالية:</p>
+            
+            <div class="transfer-box">
+                <span>0915061124</span>
+                <button onclick="copyToClipboard('0915061124')">نسخ</button>
+            </div>
+            <div class="transfer-box">
+                <span>0921499990</span>
+                <button onclick="copyToClipboard('0921499990')">نسخ</button>
+            </div>
+
+            <button class="btn-transferred" onclick="openPhonePanel()">تم التحويل</button>
+        </div>
+    </div>
+
+    <!-- لوحة إدخال الهاتف (Modal) -->
+    <div id="phone-panel" class="modal">
+        <div class="modal-content sky-blue-bg">
+            <span class="close" onclick="closeModal('phone-panel')">&times;</span>
+            <h2>تحقق من العملية</h2>
+            <p>أدخل رقم هاتفك للتواصل وتأكيد الاشتراك:</p>
+            <input type="tel" id="customer-phone" placeholder="أدخل رقم هاتفك هنا" required>
+            <button class="btn-verify" onclick="sendToWhatsApp()">تحقق</button>
+        </div>
+    </div>
+
+    <!-- قسم كيف نعمل -->
+    <section id="how-it-works" class="info-section container">
+        <h2 class="section-title">كيف نعمل؟</h2>
+        <div class="info-content">
+            <p>نحن في SH PAY نوفر لك أسهل طريقة للحصول على اشتراكاتك المفضلة. اختر العرض، قم بتحويل القيمة، وسنقوم بتفعيل اشتراكك في أسرع وقت ممكن عبر فريق دعمنا المتواجد دائماً.</p>
+        </div>
+    </section>
+
+    <!-- قسم السياسة -->
+    <section id="policy" class="info-section container">
+        <h2 class="section-title">السياسة</h2>
+        <div class="info-content">
+            <p>نضمن لك وصول الخدمة فور التأكد من عملية التحويل. في حال وجود أي مشكلة تقنية، يرجى التواصل مع الدعم الفني فوراً. خصوصية بياناتك هي أولويتنا.</p>
+        </div>
+    </section>
+
+    <!-- قسم الثقة -->
+    <section class="trust container">
+        <h2 class="section-title">ثقة عملائنا تاج على رؤوسنا 💙</h2>
+        <div class="trust-grid">
+            <img src="trust1.jpg" alt="ثقة العميل 1">
+            <img src="trust2.jpg" alt="ثقة العميل 2">
+            <img src="trust3.jpg" alt="ثقة العميل 3">
+        </div>
+    </section>
+
+    <!-- الفوتر والدعم -->
+    <footer>
+        <div class="container">
+            <p>© 2024 SH PAY - جميع الحقوق محفوظة</p>
+            <button class="btn-support" onclick="openSupportWhatsApp()">الدعم</button>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
